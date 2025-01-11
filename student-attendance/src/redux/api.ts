@@ -17,7 +17,7 @@ const api = createApi({
     tagTypes: ["Admin", "Teacher"] as const,
 
     endpoints: (builder) => ({
-        // AUTHORIZATION
+        // ADMIN AUTHORIZATION
         adminRegister: builder.mutation({
             query: (user: any) => ({
                 url: `/adminAuth/school_sign_up`,
@@ -40,6 +40,29 @@ const api = createApi({
             }),
             providesTags: ["Admin"]
         }),
+        // TEACHER AUTHORIZATION
+        teacherRegister: builder.mutation({
+            query: (user: any) => ({
+                url: `/adminAuth/school_sign_up`,
+                method: 'POST',
+                body: user,
+            }),
+        }),
+        teacherLogin: builder.mutation({
+            query: (user: any) => ({
+                url: `/adminAuth/school_login`,
+                method: 'POST',
+                body: user,
+            }),
+        }),
+        // GET ADMIN INFO
+        getTeacher: builder.query({
+            query: () => ({
+                url: `/adminAuth/admin_account`,
+                method: 'GET',
+            }),
+            providesTags: ["Admin"]
+        }),
     })
 });
 export default api;
@@ -48,4 +71,8 @@ export const {
     useAdminRegisterMutation,
     useAdminLoginMutation,
     useGetAdminQuery,
+    //Teacher Authorization
+    useTeacherRegisterMutation,
+    useTeacherLoginMutation,
+    useGetTeacherQuery,
 } = api;
