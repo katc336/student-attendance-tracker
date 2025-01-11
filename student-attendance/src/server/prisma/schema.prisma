@@ -12,6 +12,7 @@ model Admin {
   name     String
   username String    @unique
   password String
+  teacherCode String @unique
   teachers Teacher[]
 }
 
