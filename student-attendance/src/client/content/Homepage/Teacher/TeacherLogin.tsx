@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { useAdminLoginMutation } from '../../../redux/api';
+import { useTeacherLoginMutation } from '../../../../redux/api';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-const AdminLogin: React.FC = () => {
+const TeacherLogin: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState(false);
-    const [login] = useAdminLoginMutation();
+    const [login] = useTeacherLoginMutation();
     const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -39,7 +37,7 @@ const AdminLogin: React.FC = () => {
                 noValidate
                 autoComplete="off" >
                 <Typography variant={"h4"} sx={{ mb: 3 }}>
-                    Admin Login
+                    Teacher Login
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Stack
@@ -63,10 +61,15 @@ const AdminLogin: React.FC = () => {
                             onChange={(event) => setPassword(event.target.value)}
                             sx={{ width: 300 }}
                         />
+                        <div className="center">
+                            <button className='auth-button'>
+                                Login
+                            </button>
+                        </div>
                     </Stack>
                 </form>
             </Box>
         </div>
     )
 }
-export default AdminLogin
+export default TeacherLogin
