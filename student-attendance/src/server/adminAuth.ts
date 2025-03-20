@@ -15,30 +15,36 @@ const prisma = new PrismaClient();
 const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 
+const { v4: uuidv4 } = require('uuid')
+
+
 import { Request, Response, NextFunction } from 'express';
 
 //<--------------------------------REGISTER SCHOOL ADMIN-------------------------------->
 // POST /auth/register
-adminAuthRouter.post("/school_sign_up", async (req: Request, res: Response, next: NextFunction) => {
+adminAuthRouter.post("/school_register", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name, username, password } = req.body
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
+        const teacherCode = uuidv4(); // Generate a random teacher code
 
         const admin = await prisma.admin.create({
             data: {
                 name: name,
                 username: username,
-                password: hashedPassword
+                password: hashedPassword,
+                teacherCode: teacherCode
             }
         });
         delete admin.password
-        const token = jwt.sign({ id: admin.id, role: "admin" }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: admin.id, username, role: "admin" }, process.env.JWT_SECRET);
         res.send({ token });
         console.log("School Registration successful!");
     } catch (error) {
         next(error)
     }
 })
+
 //<--------------------------------LOGIN SCHOOL ADMIN-------------------------------->
 //POST /auth/login
 adminAuthRouter.post("/school_login", async (req: Request, res: Response, next: NextFunction) => {
