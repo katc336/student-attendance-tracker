@@ -24,7 +24,7 @@ const authMiddleware = async (req: any, res: any, next: any) => {
                         where: { id }
                     });
                 } else if (role === "teacher") {
-                    req.parent = await prisma.teacher.findUnique({
+                    req.teacher = await prisma.teacher.findUnique({
                         where: { id }
                     });
                 }
@@ -52,7 +52,7 @@ const requireUser = (req: any, res: any, next: any) => {
         res.status(401).send("You need an account to do that action")
     }
     else next();
- }; 
+};
 
 module.exports = {
     requireUser,

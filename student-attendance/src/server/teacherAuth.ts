@@ -18,32 +18,39 @@ const SALT_COUNT = 10;
 import { Request, Response, NextFunction } from 'express';
 //<--------------------------------REGISTER TEACHER-------------------------------->
 // POST /auth/register
-teacherAuthRouter.post("/teacher_sign_up", async (req: Request, res: Response, next: NextFunction) => {
+teacherAuthRouter.post("/teacher_register", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { admin } = req.body
-        const user = await prisma.admin.findUnique({
+        const { teacherCode, name, username, password } = req.body
+        // Find the school based on the teacher code
+        const schoolCode = await prisma.admin.findUnique({
             where: {
-                adminId: admin.id
+                teacherCode: teacherCode
             },
         });
-        const { name, username, password } = req.body
+        if (!schoolCode) {
+            return res.status(401).send("Admin not found with the provided teacher code.");
+        }
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
-
+        // Create teacher and associated with the admin/school
         const teacher = await prisma.teacher.create({
             data: {
                 name: name,
                 username: username,
-                password: hashedPassword
+                password: hashedPassword,
+                school: {
+                    connect: { id: schoolCode.id }
+                }
             }
         });
         delete teacher.password
         const token = jwt.sign({ id: teacher.id, role: "teacher" }, process.env.JWT_SECRET);
         res.send({ token });
-        console.log("Teacher successful!");
+        console.log("Teacher successfully registered!");
     } catch (error) {
         next(error)
     }
 })
+
 //<--------------------------------LOGIN TEACHER-------------------------------->
 //POST /auth/login
 teacherAuthRouter.post("/teacher_login", async (req: Request, res: Response, next: NextFunction) => {
@@ -54,7 +61,6 @@ teacherAuthRouter.post("/teacher_login", async (req: Request, res: Response, nex
                 username: username
             },
         });
-
         const validPassword = await bcrypt.compare(
             password,
             user?.password ?? ""
@@ -65,7 +71,6 @@ teacherAuthRouter.post("/teacher_login", async (req: Request, res: Response, nex
         } else if (!validPassword) {
             return res.status(401).send("Incorrect password.");
         }
-
         //Create token
         const token = jwt.sign({ id: user.id, role: "teacher" }, process.env.JWT_SECRET);
         res.send({ token });
@@ -79,15 +84,28 @@ teacherAuthRouter.post("/teacher_login", async (req: Request, res: Response, nex
 //GET /auth/my_account
 teacherAuthRouter.get("/teacher_account", requireUser, async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const reqUser = req as any;
-        const user = await prisma.user.findUnique({
-            where: { id: reqUser.user.id }
+        const teacher = req as any;
+        const teacher_user = await prisma.teacher.findUnique({
+            where: { id: teacher.teacher.id }
         });
-        delete user.password
-        res.send(user);
+        delete teacher_user.password
+        res.send(teacher_user);
     } catch (error) {
         next(error)
     }
 });
+
+// adminAuthRouter.get("/admin_account", requireUser, async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const reqAdmin = req as any;
+//         const admin = await prisma.admin.findUnique({
+//             where: { id: reqAdmin.admin.id } 
+//         });
+//         delete admin.password
+//         res.send(admin);
+//     } catch (error) {
+//         next(error)
+//     }
+//  });
 
 module.exports = teacherAuthRouter;

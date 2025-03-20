@@ -27,7 +27,6 @@ adminAuthRouter.post("/school_register", async (req: Request, res: Response, nex
         const { name, username, password } = req.body
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
         const teacherCode = uuidv4(); // Generate a random teacher code
-
         const admin = await prisma.admin.create({
             data: {
                 name: name,
