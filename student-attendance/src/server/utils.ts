@@ -48,11 +48,11 @@ const authMiddleware = async (req: any, res: any, next: any) => {
 
 // requireUser error
 const requireUser = (req: any, res: any, next: any) => {
-    if (!req.user) {
+    if (!req.admin && !req.teacher) {
         res.status(401).send("You need an account to do that action")
     }
     else next();
-};
+ }; 
 
 module.exports = {
     requireUser,
