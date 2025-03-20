@@ -11,7 +11,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 //Pages
 import HomePage from "./content/Homepage/HomePage";
-import CreatAccount from "./content/CreateAccount.tsx/CreatAccount";
+import CreatAccount from "./content/CreateAccountPage/CreatAccount";
+import LoginPage from "./content/LoginPage/LoginPage";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/create_account" element={<CreatAccount />} />
+          <Route path="/login_account" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>
