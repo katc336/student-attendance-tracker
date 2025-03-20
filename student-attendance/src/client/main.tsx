@@ -11,6 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 //Pages
 import HomePage from "./content/Homepage/HomePage";
+import CreatAccount from "./content/CreateAccount.tsx/CreatAccount";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -18,7 +19,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <BrowserRouter>
         <App />
         <Routes>
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create_account" element={<CreatAccount />} />
         </Routes>
       </BrowserRouter>
     </Provider>

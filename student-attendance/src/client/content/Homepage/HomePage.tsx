@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 const HomePage: React.FC = () => { 
     return (
-        <div>
+        <div className='basic-background'>
           
         </div>
     )

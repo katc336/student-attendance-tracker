@@ -2,9 +2,7 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography"
 import AppBar from "@mui/material/AppBar"
 import Toolbar from '@mui/material/Toolbar';
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
+import { Link } from "react-router-dom";
 const NavBar: React.FC = () => {
     return (
         <div>
@@ -24,11 +22,13 @@ const NavBar: React.FC = () => {
                     >
                         Pedagogy Path
                     </Typography>
-                    <button className="nav-bar-button">
-                        <Typography>
-                            Create Account
-                        </Typography>
-                    </button>
+                    <Link to="/create_account">
+                        <button className="nav-bar-button">
+                            <Typography>
+                                Create Account
+                            </Typography>
+                        </button>
+                    </Link>
                     <button className="login-button">
                         <Typography>
                             Login
