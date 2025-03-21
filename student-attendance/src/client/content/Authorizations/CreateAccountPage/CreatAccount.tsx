@@ -1,4 +1,5 @@
 import { useState } from "react";
+import MobileTheme from "../../../SizeThemes/MobileTheme";
 import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import Typography from "@mui/material/Typography"
@@ -7,6 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { Link } from "react-router-dom";
 
 const CreateAccountPage: React.FC = () => {
+    const { isMobile } = MobileTheme();
     return (
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", m: 5 }}>
             <Box sx={{ width: "50%", }}>

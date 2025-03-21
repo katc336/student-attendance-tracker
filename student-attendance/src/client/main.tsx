@@ -15,6 +15,7 @@ import CreateAccountPage from "./content/Authorizations/CreateAccountPage/CreatA
 import LoginPage from "./content/Authorizations/LoginPage/LoginPage";
 import AdminCreateAccountPage from "./content/Authorizations/CreateAccountPage/AdminCreateAccountPage";
 import TeacherCreateAccountPage from "./content/Authorizations/CreateAccountPage/TeacherCreateAccounPage";
+import AdminHomePage from "./content/AdminPage/AdminHomepage";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="creat_account_admin" element={<AdminCreateAccountPage />}/>
           <Route path="creat_account_teacher" element={<TeacherCreateAccountPage/>}/>
           <Route path="/login_account" element={<LoginPage />} />
+          <Route path="/admin_home" element={<AdminHomePage/>} />
         </Routes>
       </BrowserRouter>
     </Provider>

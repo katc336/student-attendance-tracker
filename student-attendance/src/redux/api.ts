@@ -20,7 +20,7 @@ const api = createApi({
         // ADMIN AUTHORIZATION
         adminRegister: builder.mutation({
             query: (user: any) => ({
-                url: `/adminAuth/school_sign_up`,
+                url: `/adminAuth/school_register`,
                 method: 'POST',
                 body: user,
             }),
