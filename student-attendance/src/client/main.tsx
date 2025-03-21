@@ -11,8 +11,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 //Pages
 import HomePage from "./content/Homepage/HomePage";
-import CreatAccount from "./content/CreateAccountPage/CreatAccount";
-import LoginPage from "./content/LoginPage/LoginPage";
+import CreateAccountPage from "./content/Authorizations/CreateAccountPage/CreatAccount";
+import LoginPage from "./content/Authorizations/LoginPage/LoginPage";
+import AdminCreateAccountPage from "./content/Authorizations/CreateAccountPage/AdminCreateAccountPage";
+import TeacherCreateAccountPage from "./content/Authorizations/CreateAccountPage/TeacherCreateAccounPage";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -21,7 +23,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <App />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/create_account" element={<CreatAccount />} />
+          <Route path="/create_account" element={<CreateAccountPage />} />
+          <Route path="creat_account_admin" element={<AdminCreateAccountPage />}/>
+          <Route path="creat_account_teacher" element={<TeacherCreateAccountPage/>}/>
           <Route path="/login_account" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>

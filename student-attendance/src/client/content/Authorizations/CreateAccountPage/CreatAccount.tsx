@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack"
 import LoginIcon from '@mui/icons-material/Login';
 import { Link } from "react-router-dom";
 
-const CreatAccount: React.FC = () => {
+const CreateAccountPage: React.FC = () => {
     return (
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", m: 5 }}>
             <Box sx={{ width: "50%", }}>
@@ -29,9 +29,11 @@ const CreatAccount: React.FC = () => {
                             Are you a School Administrator?
                         </Typography>
                         <Stack direction={"row"}>
-                            <Typography sx={{ color: "#1FA2FF" }}>
-                                Set up a school account
-                            </Typography>
+                            <Link to="/creat_account_admin" style={{ textDecoration: "none" }}>
+                                <Typography sx={{ color: "#1FA2FF" }}>
+                                    Set up a school account
+                                </Typography>
+                            </Link>
                             <LoginIcon sx={{ mx: 1, color: "#1FA2FF" }} />
                         </Stack>
                     </Card>
@@ -40,15 +42,18 @@ const CreatAccount: React.FC = () => {
                             Are you a teacher joining your team?
                         </Typography>
                         <Stack direction={"row"}>
-                            <Typography sx={{ color: "#1FA2FF" }}>
-                                Sign in with your email
-                            </Typography>
+                            <Link to="/creat_account_teacher" style={{ textDecoration: "none" }}>
+                                <Typography sx={{ color: "#1FA2FF" }}>
+                                    Sign in with your email
+                                </Typography>
+                            </Link>
                             <LoginIcon sx={{ mx: 1, color: "#1FA2FF" }} />
                         </Stack>
                     </Card>
                 </Stack>
             </Box>
         </Box>
-    )}
+    )
+}
 
-export default CreatAccount
+export default CreateAccountPage

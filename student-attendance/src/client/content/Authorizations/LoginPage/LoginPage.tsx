@@ -15,10 +15,10 @@ const LoginPage: React.FC = () => {
                         Your Free Educational Data Tracker
                     </Typography>
                     <Typography sx={{ color: "#00212c", fontFamily: 'monospace', fontWeight: 700, my: 1 }} variant="h1">
-                    Welcome back!
+                        Welcome back!
                     </Typography>
                     <Typography sx={{ color: "#00212c", my: 1 }} variant="h4">
-                     
+
                     </Typography>
                 </Stack>
             </Box>
@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
                         </Typography>
                         <Stack direction={"row"}>
                             <Typography sx={{ color: "#1FA2FF" }}>
-                              Login into your school account.
+                                Login into your school account.
                             </Typography>
                             <LoginIcon sx={{ mx: 1, color: "#1FA2FF" }} />
                         </Stack>
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
                         </Typography>
                         <Stack direction={"row"}>
                             <Typography sx={{ color: "#1FA2FF" }}>
-                            Login into your classroom.
+                                Login into your classroom.
                             </Typography>
                             <LoginIcon sx={{ mx: 1, color: "#1FA2FF" }} />
                         </Stack>
@@ -49,6 +49,7 @@ const LoginPage: React.FC = () => {
                 </Stack>
             </Box>
         </Box>
-    )}
+    )
+}
 
 export default LoginPage

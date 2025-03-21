@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { useAdminRegisterMutation } from '../../../../redux/api';
+import { useTeacherLoginMutation } from '../../../../../redux/api';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-const AdminRegister: React.FC = () => {
+const TeacherLogin: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState(false);
-    const [register] = useAdminRegisterMutation();
+    const [login] = useTeacherLoginMutation();
     const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault();
-            const result = await register({ username, password });
+            const result = await login({ username, password });
             if ("data" in result) {
                 // Successful login
                 setLoginError(false);
@@ -27,7 +27,7 @@ const AdminRegister: React.FC = () => {
                 console.log("Incorrect login credentials: Check username and or password");
             }
         } catch (error) {
-            console.error(error)
+
         }
     };
     return (
@@ -37,16 +37,17 @@ const AdminRegister: React.FC = () => {
                 noValidate
                 autoComplete="off" >
                 <Typography variant={"h4"} sx={{ mb: 3 }}>
-                    Register School
+                    Teacher Login
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Stack
                         direction="column"
                         spacing={2}
-                        sx={{}}>
+                        sx={{}}
+                    >
                         <TextField
                             id="username-form"
-                            label="school account username"
+                            label="username"
                             variant="outlined"
                             value={username}
                             onChange={(event) => setUsername(event.target.value)}
@@ -60,9 +61,9 @@ const AdminRegister: React.FC = () => {
                             onChange={(event) => setPassword(event.target.value)}
                             sx={{ width: 300 }}
                         />
-                          <div className="center">
+                        <div className="center">
                             <button className='auth-button'>
-                               Sign-Up
+                                Login
                             </button>
                         </div>
                     </Stack>
@@ -71,4 +72,4 @@ const AdminRegister: React.FC = () => {
         </div>
     )
 }
-export default AdminRegister
+export default TeacherLogin
