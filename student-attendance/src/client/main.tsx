@@ -10,12 +10,12 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 //Pages
-import HomePage from "./content/Homepage/HomePage";
-import CreateAccountPage from "./content/Authorizations/CreateAccountPage/CreatAccount";
-import LoginPage from "./content/Authorizations/LoginPage/LoginPage";
-import AdminCreateAccountPage from "./content/Authorizations/CreateAccountPage/AdminCreateAccountPage";
-import TeacherCreateAccountPage from "./content/Authorizations/CreateAccountPage/TeacherCreateAccounPage";
-import AdminHomePage from "./content/AdminPage/AdminHomepage";
+import HomePage from "./components/Homepage/HomePage";
+import CreateAccountPage from "./components/Authorizations/CreateAccountPage/CreatAccount";
+import LoginPage from "./components/Authorizations/LoginPage/LoginPage";
+import AdminCreateAccountPage from "./components/Authorizations/CreateAccountPage/AdminCreateAccountPage";
+import TeacherCreateAccountPage from "./components/Authorizations/CreateAccountPage/TeacherCreateAccounPage";
+import AdminHomePage from "./components/AdminPage/AdminHomepage";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

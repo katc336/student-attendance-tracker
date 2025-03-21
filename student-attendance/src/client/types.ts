@@ -3,3 +3,10 @@ type SwitchForm = {
     setChange: any
     buttonName: string
 }
+
+type Card = {
+    icon: any
+    text: string
+    number: number
+    addIcon: any
+}
