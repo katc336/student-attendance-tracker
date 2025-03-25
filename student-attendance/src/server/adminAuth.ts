@@ -61,7 +61,7 @@ adminAuthRouter.post("/school_login", async (req: Request, res: Response, next: 
         );
         //Check user and password
         if (!admin) {
-            return res.status(401).send("There is school registerd with that username.");
+            return res.status(401).send("There is no school registerd with that username.");
         } else if (!validPassword) {
             return res.status(401).send("The password is incorrect password.");
         }
