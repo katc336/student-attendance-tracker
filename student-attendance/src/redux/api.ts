@@ -63,6 +63,14 @@ const api = createApi({
             }),
             providesTags: ["Admin"]
         }),
+        //ADMIN ADD TEACHER
+        postTeacher: builder.mutation({
+            query: (user: any) => ({
+                url: `/adminApi/add_teacher`,
+                method: 'POST',
+                body: user,
+            }),
+        })
     })
 });
 export default api;
@@ -75,4 +83,6 @@ export const {
     useTeacherRegisterMutation,
     useTeacherLoginMutation,
     useGetTeacherQuery,
+    //Admin
+    usePostTeacherMutation,
 } = api;

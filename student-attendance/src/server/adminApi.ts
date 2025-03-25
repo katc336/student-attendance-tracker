@@ -11,15 +11,12 @@ import { Request, Response, NextFunction } from 'express';
 
 adminApiRouter.post("/add_teacher", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { teacherName, teacherCode } = req.body
+        const { teacherName } = req.body
+        const reqAdmin = req as any;
         const admin = await prisma.admin.findUnique({
-            where: {
-                teacherCode: teacherCode
-            }
-        })
-        if (!admin) {
-            return res.status(404).send({ message: "Admin with the specified teacher code not found" })
-        }
+            where: { id: reqAdmin.admin.id }
+        });
+        delete admin.password
         const newTeacher = await prisma.teacher.create({
             data: {
                 name: teacherName,
@@ -33,5 +30,20 @@ adminApiRouter.post("/add_teacher", async (req: Request, res: Response, next: Ne
         next(error);
     }
 });
+adminApiRouter.post("/add_class", async (req: Request, res: Response, next: NextFunction) => {
+    try {
 
+        res.status(200).send({ message: "Teacher added successfully" })
+    } catch (error) {
+        next(error);
+    }
+});
+adminApiRouter.post("/add_students", async (req: Request, res: Response, next: NextFunction) => {
+    try {
+
+        res.status(200).send({ message: "Teacher added successfully" })
+    } catch (error) {
+        next(error);
+    }
+});
 module.exports = adminApiRouter;
