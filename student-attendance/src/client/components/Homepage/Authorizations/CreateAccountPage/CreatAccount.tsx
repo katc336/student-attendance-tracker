@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MobileTheme from "../../../SizeThemes/MobileTheme";
+import MobileTheme from "../../../../SizeThemes/MobileTheme";
 import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import Typography from "@mui/material/Typography"
@@ -46,7 +46,7 @@ const CreateAccountPage: React.FC = () => {
                         <Stack direction={"row"}>
                             <Link to="/creat_account_teacher" style={{ textDecoration: "none" }}>
                                 <Typography sx={{ color: "#1FA2FF" }}>
-                                    Sign in with your email
+                                    Set up your teacher account
                                 </Typography>
                             </Link>
                             <LoginIcon sx={{ mx: 1, color: "#1FA2FF" }} />

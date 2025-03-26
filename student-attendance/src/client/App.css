@@ -5,6 +5,12 @@
   justify-content: center;
   text-align: center;
 }
+.center-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
 .auth-button {
   border-radius: 50px;

@@ -32,7 +32,7 @@ const AdminNav: React.FC = () => {
                 <img
                     width="110px"
                     style={{ marginLeft: 10 }} />
-                <Link to="">
+                <Link to="/admin_home">
                     <Button sx={{ textTransform: "none", color: "#0A1D56", mx: 1, my: 3, border: activePage === "/dashboard" ? "5px solid orange" : "", borderRadius: "50px" }}>
                         <Typography sx={{ color: "#00212c", fontFamily: 'monospace', my: 1 }}>
                             Home

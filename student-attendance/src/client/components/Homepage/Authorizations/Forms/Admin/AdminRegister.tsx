@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAdminRegisterMutation } from '../../../../../redux/api';
+import { useAdminRegisterMutation } from '../../../../../../redux/api';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -21,7 +21,7 @@ const AdminRegister: React.FC = () => {
             if ("data" in result) {
                 // Successful login
                 setRegisterError(false);
-                console.log("Successful Login");
+                console.log("Successful registration");
                 navigate("/admin_home");
             } else if ('error' in result) {
                 // Error occurred

@@ -1,9 +1,6 @@
-import { useState } from "react";
 import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
-import Typography from "@mui/material/Typography"
-import Stack from "@mui/material/Stack"
-import { Link } from "react-router-dom";
+import TeacherRegister from "../Forms/Teacher/TeacherRegister";
 
 const TeacherCreateAccountPage: React.FC = () => {
     return (
@@ -11,7 +8,7 @@ const TeacherCreateAccountPage: React.FC = () => {
             <Card
                 sx={{ p: 3 }}
                 className="center">
-
+                    <TeacherRegister />
             </Card>
         </Box>
     )

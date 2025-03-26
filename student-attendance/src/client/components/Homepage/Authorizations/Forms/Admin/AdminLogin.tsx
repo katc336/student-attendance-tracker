@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useTeacherLoginMutation } from '../../../../../redux/api';
+import { useAdminLoginMutation } from '../../../../../../redux/api';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-const TeacherLogin: React.FC = () => {
+const AdminLogin: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState(false);
-    const [login] = useTeacherLoginMutation();
+    const [login] = useAdminLoginMutation();
     const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -27,7 +27,7 @@ const TeacherLogin: React.FC = () => {
                 console.log("Incorrect login credentials: Check username and or password");
             }
         } catch (error) {
-
+            console.error(error)
         }
     };
     return (
@@ -37,7 +37,7 @@ const TeacherLogin: React.FC = () => {
                 noValidate
                 autoComplete="off" >
                 <Typography variant={"h4"} sx={{ mb: 3 }}>
-                    Teacher Login
+                    Admin Login
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Stack
@@ -61,7 +61,7 @@ const TeacherLogin: React.FC = () => {
                             onChange={(event) => setPassword(event.target.value)}
                             sx={{ width: 300 }}
                         />
-                        <div className="center">
+                         <div className="center">
                             <button className='auth-button'>
                                 Login
                             </button>
@@ -72,4 +72,4 @@ const TeacherLogin: React.FC = () => {
         </div>
     )
 }
-export default TeacherLogin
+export default AdminLogin

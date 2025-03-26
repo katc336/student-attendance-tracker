@@ -43,14 +43,14 @@ const api = createApi({
         // TEACHER AUTHORIZATION
         teacherRegister: builder.mutation({
             query: (user: any) => ({
-                url: `/adminAuth/school_sign_up`,
+                url: `/teacherAuth/teacher_register`,
                 method: 'POST',
                 body: user,
             }),
         }),
         teacherLogin: builder.mutation({
             query: (user: any) => ({
-                url: `/adminAuth/school_login`,
+                url: `/teacherAuth/teacher_login`,
                 method: 'POST',
                 body: user,
             }),
