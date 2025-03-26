@@ -74,7 +74,7 @@ const api = createApi({
         //ADMIN ADD TEACHER
         adminPostStudent: builder.mutation({
             query: (studentName: object) => ({
-                url: `/adminApi/add_student`,
+                url: `/adminApi/add_students`,
                 method: 'POST',
                 body: studentName,
             }),
