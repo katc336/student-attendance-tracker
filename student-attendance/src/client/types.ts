@@ -11,7 +11,7 @@ type Card = {
     addIcon: any
 }
 
-interface AddTeacherPopUpProps {
+interface AddPopUpProps {
     open: boolean;
     selectedValue: string;
     onClose: (value: string) => void;

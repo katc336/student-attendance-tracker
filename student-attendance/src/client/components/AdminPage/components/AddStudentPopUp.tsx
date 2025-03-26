@@ -5,12 +5,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import { usePostTeacherMutation } from '../../../../redux/api';
+import { useAdminPostStudentMutation } from '../../../../redux/api';
 
-const AddTeacherPopUp = (props: AddPopUpProps) => {
+const AddStudentPopUp = (props: AddPopUpProps) => {
     const [name, setName] = useState("");
-    const [snackOpen, setSnackOpen] = useState(false);
-    const [addTeacher] = usePostTeacherMutation();
+    const [addStudent] = useAdminPostStudentMutation();
 
     const { onClose, selectedValue, open } = props;
     const handleClose = () => {
@@ -19,12 +18,12 @@ const AddTeacherPopUp = (props: AddPopUpProps) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault();
-            const result = await addTeacher({ teacherName: name });
+            const result = await addStudent({ studentName: name });
             if ("data" in result) {
-                console.log("Teacher successfully added")
+                console.log("Student successfully added")
             } else if ('error' in result) {
                 // Error occurred
-                console.log("Error adding teacher");
+                console.log("Error adding student");
             }
         } catch (error) {
             console.error(error)
@@ -37,7 +36,7 @@ const AddTeacherPopUp = (props: AddPopUpProps) => {
                 <Typography
                     className='center'
                     sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.1rem', color: "#1FA2FF", mb: 3 }}>
-                    Add Teacher
+                    Add Student
                 </Typography>
                 <Box
                     component="form"
@@ -49,7 +48,7 @@ const AddTeacherPopUp = (props: AddPopUpProps) => {
                         spacing={2} >
                         <TextField
                             id="username-form"
-                            label="Teacher's name"
+                            label="Student's name"
                             variant="outlined"
                             value={name}
                             onChange={(event) => setName(event.target.value)}
@@ -57,7 +56,7 @@ const AddTeacherPopUp = (props: AddPopUpProps) => {
                         />
                         <div className="center">
                             <button type="submit" className='auth-button'>
-                                Add Teacher
+                                Add Student
                             </button>
                         </div>
                     </Stack>
@@ -67,5 +66,4 @@ const AddTeacherPopUp = (props: AddPopUpProps) => {
     );
 }
 
-export default AddTeacherPopUp;
-
+export default AddStudentPopUp;

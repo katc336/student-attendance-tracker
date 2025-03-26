@@ -40,10 +40,24 @@ adminApiRouter.post("/add_class", async (req: Request, res: Response, next: Next
 });
 adminApiRouter.post("/add_students", async (req: Request, res: Response, next: NextFunction) => {
     try {
-
-        res.status(200).send({ message: "Teacher added successfully" })
+        const { studentName } = req.body
+        const reqAdmin = req as any;
+        const admin = await prisma.admin.findUnique({
+            where: { id: reqAdmin.admin.id }
+        });
+        delete admin.password
+        const newStudent = await prisma.student.create({
+            data: {
+                studentname: studentName,
+                admin: {
+                    connect: { id: admin.id }
+                }
+            }
+        })
+        res.status(200).send({ message: "Student added successfully", data: newStudent })
     } catch (error) {
         next(error);
     }
-});
+ });
+ 
 module.exports = adminApiRouter;

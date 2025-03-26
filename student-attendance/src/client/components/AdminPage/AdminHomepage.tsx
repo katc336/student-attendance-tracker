@@ -10,19 +10,20 @@ import { useGetAdminQuery } from "../../../redux/api";
 import DashboardCard from "./components/DashboardCard";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddTeacherPopUp from "./components/AddTeacherPopUp";
+import AddStudentPopUp from "./components/AddStudentPopUp";
 
 const AdminHomePage: React.FC = () => {
 
     const { data, error, isLoading } = useGetAdminQuery({});
-    const [open, setOpen] = useState(false);
-    
-    const handleClickOpen = () => {
-      setOpen(true);
+    const [openPopup, setOpenPopup] = useState("");
+
+    const handleClickOpen = (popup: string) => {
+        setOpenPopup(popup);
     };
-    
-    const handleClose = (value: string) => {
-      setOpen(false);
+    const handleClose = () => {
+        setOpenPopup("");
     };
+
     if (isLoading) {
         console.log("Loading...");
     }
@@ -32,22 +33,25 @@ const AdminHomePage: React.FC = () => {
     if (data) {
         console.log(data);
     }
+
     return (
         <Box sx={{ mx: 20 }}>
             <Stack direction={"row"}>
                 <DashboardCard
-                    icon={<Diversity3Icon fontSize="large" sx={{ color: "#1087dc"}}/>}
+                    icon={<Diversity3Icon fontSize="large" sx={{ color: "#1087dc" }} />}
                     text={"Students"}
-                    number={0}
-                    addIcon={<PersonAddIcon fontSize="small" sx={{ color: "#1087dc"}} onClick={handleClickOpen} />}
+                    number={data && data.students.length}
+                    addIcon={<PersonAddIcon fontSize="small" sx={{ color: "#1087dc" }} onClick={() => handleClickOpen("student")} />}
                 />
                 <DashboardCard
-                    icon={<Groups2Icon fontSize="large" sx={{ color: "#1087dc"}}/>}
+                    icon={<Groups2Icon fontSize="large" sx={{ color: "#1087dc" }} />}
                     text={"Teachers"}
-                    number={0}
-                    addIcon={<AddTeacherPopUp open={open} onClose={handleClose} selectedValue="" />}
+                    number={data && data.teachers.length}
+                    addIcon={<PersonAddIcon fontSize="small" sx={{ color: "#1087dc" }} onClick={() => handleClickOpen("teacher")} />}
                 />
             </Stack>
+            {openPopup === "student" && <AddStudentPopUp open={openPopup === "student"} selectedValue="default" onClose={handleClose} />}
+            {openPopup === "teacher" && <AddTeacherPopUp open={openPopup === "teacher"} selectedValue="default" onClose={handleClose} />}
         </Box>
     )
 }

@@ -81,14 +81,29 @@ adminAuthRouter.get("/admin_account", requireUser, async (req: Request, res: Res
     try {
         const reqAdmin = req as any;
         const admin = await prisma.admin.findUnique({
-            where: { id: reqAdmin.admin.id } 
+            where: { id: reqAdmin.admin.id },
+            include: {
+                students: true, 
+                teachers: {
+                    include: {
+                        classroom: {
+                            include: {
+                                students: {
+                                    include: {
+                                        Attendance: true
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            },
         });
         delete admin.password
         res.send(admin);
     } catch (error) {
         next(error)
     }
- });
- 
-
+});
 module.exports = adminAuthRouter;

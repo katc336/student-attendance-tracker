@@ -14,6 +14,7 @@ model Admin {
   password    String
   teacherCode String    @unique
   teachers    Teacher[]
+  students    Student[]
 }
 
 model Teacher {
@@ -24,6 +25,7 @@ model Teacher {
   school    Admin       @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   teacherId Int
   classroom Classroom[]
+  students  Student[]
 }
 
 model Classroom {
@@ -37,11 +39,15 @@ model Classroom {
 model Student {
   id          Int          @id @default(autoincrement())
   studentname String
-  type        String
+  type        String?
+  admin       Admin?       @relation(fields: [adminId], references: [id])
+  adminId     Int?
   classroom   Classroom?   @relation(fields: [classroomId], references: [id])
-  classroomId Int
+  classroomId Int?
   createdAt   DateTime     @default(now())
   Attendance  Attendance[]
+  Teacher     Teacher?     @relation(fields: [teacherId], references: [id])
+  teacherId   Int?
 }
 
 model Attendance {
