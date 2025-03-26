@@ -10,3 +10,9 @@ type Card = {
     number: number
     addIcon: any
 }
+
+interface AddTeacherPopUpProps {
+    open: boolean;
+    selectedValue: string;
+    onClose: (value: string) => void;
+}

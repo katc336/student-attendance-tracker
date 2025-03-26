@@ -5,16 +5,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import { usePostTeacherMutation } from '../../../../redux/api';
 
-export interface AddTeacherPopUpProps {
-    open: boolean;
-    selectedValue: string;
-    onClose: (value: string) => void;
-}
-
-function AddTeacherPopUp(props: AddTeacherPopUpProps) {
+const AddTeacherPopUp = (props: AddTeacherPopUpProps) => {
     const [name, setName] = useState("");
     const [snackOpen, setSnackOpen] = useState(false);
     const [addTeacher] = usePostTeacherMutation();
@@ -23,24 +16,12 @@ function AddTeacherPopUp(props: AddTeacherPopUpProps) {
     const handleClose = () => {
         onClose(selectedValue);
     };
-    const handleSnackClose = (
-        event: React.SyntheticEvent | Event,
-        reason?: SnackbarCloseReason,
-      ) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-      };
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault();
-            const result = await addTeacher({ name });
+            const result = await addTeacher({ teacherName: name });
             if ("data" in result) {
-                <Snackbar
-                    autoHideDuration={5000}
-                    onClose={handleSnackClose}
-                    message="Teacher added successfully!"
-                />
+                console.log("Teacher successfully added")
             } else if ('error' in result) {
                 // Error occurred
                 console.log("Error adding teacher");
@@ -49,11 +30,11 @@ function AddTeacherPopUp(props: AddTeacherPopUpProps) {
             console.error(error)
         }
     };
+
     return (
         <Dialog onClose={handleClose} open={open}>
             <DialogTitle>
                 <Typography
-                    variant='h5'
                     className='center'
                     sx={{ fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.1rem', color: "#1FA2FF", mb: 3 }}>
                     Add Teacher
@@ -82,7 +63,6 @@ function AddTeacherPopUp(props: AddTeacherPopUpProps) {
                     </Stack>
                 </Box>
             </DialogTitle>
-
         </Dialog>
     );
 }

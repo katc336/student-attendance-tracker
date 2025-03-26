@@ -65,12 +65,12 @@ const api = createApi({
         }),
         //ADMIN ADD TEACHER
         postTeacher: builder.mutation({
-            query: (user: any) => ({
+            query: (teacherName: object) => ({
                 url: `/adminApi/add_teacher`,
                 method: 'POST',
-                body: user,
+                body: teacherName,
             }),
-        })
+        })  
     })
 });
 export default api;
