@@ -58,10 +58,10 @@ const api = createApi({
         // GET ADMIN INFO
         getTeacher: builder.query({
             query: () => ({
-                url: `/adminAuth/teacher_account`,
+                url: `/teacherAuth/teacher_account`,
                 method: 'GET',
             }),
-            providesTags: ["Admin"]
+            providesTags: ["Teacher"]
         }),
         //ADMIN ADD TEACHER
         postTeacher: builder.mutation({

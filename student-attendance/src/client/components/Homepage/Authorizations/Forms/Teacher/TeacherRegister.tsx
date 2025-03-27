@@ -22,8 +22,8 @@ const TeacherRegister: React.FC = () => {
             if ("data" in result) {
                 // Successful login
                 setRegisterError(false);
-                console.log("Successful Login");
-                navigate("/admin_home");
+                console.log("Successful Teacher Registration");
+                navigate("/teacher_home");
             } else if ('error' in result) {
                 // Error occurred
                 setRegisterError(true);
